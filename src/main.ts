@@ -1,21 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import { CustomExceptionFilter } from './commons/exceptions-filters/custom-exception.filter';
 
 async function bootstrap() {
-  const port = process.env.PORT || 8080;
-
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-    }),
-  );
-  app.useGlobalFilters(new CustomExceptionFilter());
-  app.enableCors();
-  await app.listen(port);
-
-  console.log(`listening on port ${port}...`);
+  await app.listen(3000);
 }
 bootstrap();
